@@ -1,0 +1,44 @@
+network unknown {
+}
+variable Blocked_cooling_channels {
+    type discrete [ 2 ] { No, Yes };
+}
+variable Flow_Meter {
+    type discrete [ 3 ] { High, Low, Normal };
+}
+variable Hydraulic_leaks {
+    type discrete [ 2 ] { No, Yes };
+}
+variable Pressure {
+    type discrete [ 2 ] { High, Normal };
+}
+variable Roll_surface_damage {
+    type discrete [ 2 ] { No, Yes };
+}
+variable Vibration {
+    type discrete [ 3 ] { High, Low, Normal };
+}
+probability ( Blocked_cooling_channels ) {
+    table 0.8571428571428571, 0.14285714285714285 ;
+}
+probability ( Flow_Meter | Blocked_cooling_channels ) {
+    ( No ) 0.057692307692307696, 0.04807692307692308, 0.8942307692307693;
+    ( Yes ) 0.05263157894736842, 0.8947368421052632, 0.05263157894736842;
+
+}
+probability ( Hydraulic_leaks ) {
+    table 0.8571428571428571, 0.14285714285714285 ;
+}
+probability ( Pressure | Hydraulic_leaks ) {
+    ( No ) 0.06796116504854369, 0.9320388349514563;
+    ( Yes ) 0.9444444444444444, 0.05555555555555555;
+
+}
+probability ( Roll_surface_damage ) {
+    table 0.8571428571428571, 0.14285714285714285 ;
+}
+probability ( Vibration | Roll_surface_damage ) {
+    ( No ) 0.009615384615384616, 0.23076923076923078, 0.7596153846153846;
+    ( Yes ) 0.8947368421052632, 0.05263157894736842, 0.05263157894736842;
+
+}
